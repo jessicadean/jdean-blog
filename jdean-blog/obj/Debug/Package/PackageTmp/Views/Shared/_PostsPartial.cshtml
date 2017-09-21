@@ -1,0 +1,8 @@
+﻿@model jdean_blog.Models.Post
+
+@foreach (var item in Model)
+{
+    <ul>
+        <li>@Html.ActionLink(item.Title, "Details", "Posts", new { slug = item.Slug })</li> 
+    </ul>
+}

@@ -1,0 +1,769 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pagination</name>
+    </assembly>
+    <members>
+        <member name="T:Pagination.PageLinker">
+            <summary>
+            An object that can create a chain of linked page objects.
+            </summary>
+        </member>
+        <member name="M:Pagination.PageLinker.LinkPages(Pagination.Models.IPageRequestModel,Pagination.Models.IPageResultsModel)">
+            <summary>
+            Creates a collection of <see cref="T:IPageLinkModel"/> objects from the specified <paramref name="request"/> and <paramref name="results"/>.
+            </summary>
+            <param name="request">The request for which the collection of <see cref="T:IPageLinkModel"/> objects is to be created.</param>
+            <param name="results">The results for which the collection of <see cref="T:IPageLinkModel"/> objects is to be created.</param>
+            <returns>A collection of <see cref="T:IPageLinkModel"/> objects from the specified <paramref name="request"/> and <paramref name="results"/>.</returns>
+        </member>
+        <member name="M:Pagination.PageLinker.Create(System.Boolean,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a <see cref="T:PageLinker"/> using the specified parameters.
+            </summary>
+            <param name="isBase1"><c>true</c> to use base-1 page numbers. Otherwise, <c>false</c>.</param>
+            <param name="prevText">The text to be displayed for the previous page.</param>
+            <param name="nextText">The text to be displayed for the next page.</param>
+            <param name="forcePrevNext"><c>true</c> to always add previous- and next-page links. Otherwise, <c>false</c>.</param>
+            <returns>A <see cref="T:PageLinker"/> that will link pages using the specified parameters.</returns>
+        </member>
+        <member name="M:Pagination.PageLinker.Create(System.Boolean,System.String,System.String)">
+            <summary>
+            Creates a <see cref="T:PageLinker"/> using the specified parameters.
+            </summary>
+            <param name="isBase1"><c>true</c> to use base-1 page numbers. Otherwise, <c>false</c>.</param>
+            <param name="prevText">The text to be displayed for the previous page.</param>
+            <param name="nextText">The text to be displayed for the next page.</param>
+            <returns>A <see cref="T:PageLinker"/> that will link pages using the specified parameters.</returns>
+        </member>
+        <member name="M:Pagination.PageLinker.Create(System.String,System.String)">
+            <summary>
+            Creates a <see cref="T:PageLinker"/> using the specified parameters.
+            </summary>
+            <param name="prevText">The text to be displayed for the previous page.</param>
+            <param name="nextText">The text to be displayed for the next page.</param>
+            <returns>A <see cref="T:PageLinker"/> that will link pages using the specified parameters.</returns>
+        </member>
+        <member name="M:Pagination.PageLinker.Create(System.Boolean)">
+            <summary>
+            Creates a <see cref="T:PageLinker"/> using the specified parameters.
+            </summary>
+            <param name="isBase1"><c>true</c> to use base-1 page numbers. Otherwise, <c>false</c>.</param>
+            <returns>A <see cref="T:PageLinker"/> that will link pages using the specified parameters.</returns>
+        </member>
+        <member name="M:Pagination.PageLinker.Create">
+            <summary>
+            Creates a <see cref="T:PageLinker"/>.
+            </summary>
+            <returns>A <see cref="T:PageLinker"/>.</returns>
+        </member>
+        <member name="M:Pagination.PageLinker.CreateDynamic(System.Boolean,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a dynamic <see cref="T:PageLinker"/> using the specified parameters.
+            </summary>
+            <param name="isBase1"><c>true</c> to use base-1 page numbers. Otherwise, <c>false</c>.</param>
+            <param name="prevText">The text to be displayed for the previous page.</param>
+            <param name="nextText">The text to be displayed for the next page.</param>
+            <param name="forcePrevNext"><c>true</c> to always add previous- and next-page links. Otherwise, <c>false</c>.</param>
+            <returns>A dynamic <see cref="T:PageLinker"/> that will link pages using the specified parameters.</returns>
+        </member>
+        <member name="M:Pagination.PageLinker.CreateDynamic(System.Boolean,System.String,System.String)">
+            <summary>
+            Creates a dynamic <see cref="T:PageLinker"/> using the specified parameters.
+            </summary>
+            <param name="isBase1"><c>true</c> to use base-1 page numbers. Otherwise, <c>false</c>.</param>
+            <param name="prevText">The text to be displayed for the previous page.</param>
+            <param name="nextText">The text to be displayed for the next page.</param>
+            <returns>A dynamic <see cref="T:PageLinker"/> that will link pages using the specified parameters.</returns>
+        </member>
+        <member name="M:Pagination.PageLinker.CreateDynamic(System.String,System.String)">
+            <summary>
+            Creates a dynamic <see cref="T:PageLinker"/> using the specified parameters.
+            </summary>
+            <param name="prevText">The text to be displayed for the previous page.</param>
+            <param name="nextText">The text to be displayed for the next page.</param>
+            <returns>A dynamic <see cref="T:PageLinker"/> that will link pages using the specified parameters.</returns>
+        </member>
+        <member name="M:Pagination.PageLinker.CreateDynamic(System.Boolean)">
+            <summary>
+            Creates a dynamic <see cref="T:PageLinker"/> using the specified parameters.
+            </summary>
+            <param name="isBase1"><c>true</c> to use base-1 page numbers. Otherwise, <c>false</c>.</param>
+            <returns>A dynamic <see cref="T:PageLinker"/> that will link pages using the specified parameters.</returns>
+        </member>
+        <member name="M:Pagination.PageLinker.CreateDynamic">
+            <summary>
+            Creates a dynamic <see cref="T:PageLinker"/>.
+            </summary>
+            <returns>A dynamic <see cref="T:PageLinker"/>.</returns>
+        </member>
+        <member name="M:Pagination.PageLinker.CreatePrevNext(System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a <see cref="T:PageLinker"/> that only displays previous- and next-page options (no numbers are shown).
+            </summary>
+            <param name="prevText">The text to be displayed for the previous page.</param>
+            <param name="nextText">The text to be displayed for the next page.</param>
+            <param name="forcePrevNext"><c>true</c> to always add previous- and next-page links. Otherwise, <c>false</c>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pagination.PageLinker.CreatePrevNext(System.String,System.String)">
+            <summary>
+            Creates a <see cref="T:PageLinker"/> that only displays previous- and next-page options (no numbers are shown).
+            </summary>
+            <param name="prevText">The text to be displayed for the previous page.</param>
+            <param name="nextText">The text to be displayed for the next page.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Pagination.PageLinker.Default">
+            <summary>
+            Gets or sets the default <see cref="T:PageLinker"/> used to create chains of page objects.
+            </summary>
+        </member>
+        <member name="T:Pagination.Models.IOrderedPageSourceModel`1">
+            <summary>
+            Interface for models of an ordered source that can be paginated.
+            </summary>
+            <typeparam name="TSource">The type of element in the source.</typeparam>
+        </member>
+        <member name="T:Pagination.Models.IPageSourceModel">
+            <summary>
+            Interface for a source that can be accessed with a pagination request.
+            </summary>
+        </member>
+        <member name="M:Pagination.Models.IPageSourceModel.GetMaxItemsPerPage">
+            <summary>
+            Gets the maximum number of items that can be displayed on a page.
+            </summary>
+            <returns>The maximum number of items that can be displayed on a page.</returns>
+        </member>
+        <member name="M:Pagination.Models.IPageSourceModel.GetDefaultItemsPerPage">
+            <summary>
+            Gets the default number of items that are displayed on a page.
+            </summary>
+            <returns>The default number of items that are displayed on a page.</returns>
+        </member>
+        <member name="T:Pagination.Models.IPageSourceModel`1">
+            <summary>
+            Interface for models of a source that can be paginated.
+            </summary>
+            <typeparam name="TSource">The type of element in the source.</typeparam>
+        </member>
+        <member name="P:Pagination.Models.IPageSourceModel`1.Source">
+            <summary>
+            Gets the source of elements available to be paginated.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IOrderedPageSourceModel`1.Source">
+            <summary>
+            Gets the underlying ordered source of this source.
+            </summary>
+        </member>
+        <member name="T:Pagination.Models.IOrderedPageSourceModel`2">
+            <summary>
+            Interface for models of an ordered source that can be paginated.
+            </summary>
+            <typeparam name="TSource">The type of element in the source.</typeparam>
+            <typeparam name="TRequest">The type of the request made that created the source.</typeparam>
+        </member>
+        <member name="T:Pagination.Models.IPageSourceModel`2">
+            <summary>
+            Interface for a source that can be accessed with a pagination request.
+            </summary>
+            <typeparam name="TSource">The type of element in the source.</typeparam>
+            <typeparam name="TRequest">The type of request that created this page source.</typeparam>
+        </member>
+        <member name="M:Pagination.Models.IPageSourceModel`2.MaxItemsPerPage(System.Int32)">
+            <summary>
+            Returns a new page source with the specified maximum number of items displayed on a page.
+            </summary>
+            <param name="value">The maximum number of items that can be displayed on a page.</param>
+            <returns>A new page source with the specified maximum number of items displayed on a page.</returns>
+        </member>
+        <member name="M:Pagination.Models.IPageSourceModel`2.DefaultItemsPerPage(System.Int32)">
+            <summary>
+            Returns a new page source with the specified default number of items displayed on a page.
+            </summary>
+            <param name="value">The default number of items that are displayed on a page.</param>
+            <returns>A new page source with the specified default number of items displayed on a page.</returns>
+        </member>
+        <member name="M:Pagination.Models.IPageSourceModel`2.OrderBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Orders this source using the <paramref name="keySelector"/>.
+            </summary>
+            <typeparam name="TKey">The type of value on which the source is to be ordered.</typeparam>
+            <param name="keySelector">The expression by which the source is to be ordered.</param>
+            <returns>
+            An ordered page source that contains the elements in this source ordered by the <paramref name="keySelector"/>.
+            </returns>
+        </member>
+        <member name="M:Pagination.Models.IPageSourceModel`2.OrderByDescending``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Orders in a descending manner this source using the <paramref name="keySelector"/>.
+            </summary>
+            <typeparam name="TKey">The type of value on which the source is to be descendingly ordered.</typeparam>
+            <param name="keySelector">The expression by which the source is to be descendingly ordered.</param>
+            <returns>
+            An ordered page source that contains the elements in this source descendingly ordered by the <paramref name="keySelector"/>.
+            </returns>
+        </member>
+        <member name="P:Pagination.Models.IPageSourceModel`2.Request">
+            <summary>
+            The request that caused this page source to be created.
+            </summary>
+        </member>
+        <member name="M:Pagination.Models.IOrderedPageSourceModel`2.ThenBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Adds additional ordering to this source.
+            </summary>
+            <typeparam name="TKey">The type by which the additional ordering is ordered.</typeparam>
+            <param name="keySelector">The expression that returns the additional ordering.</param>
+            <returns>
+            A new source that is additionally ordered by the <paramref name="keySelector"/>.
+            </returns>
+        </member>
+        <member name="M:Pagination.Models.IOrderedPageSourceModel`2.ThenByDescending``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Adds additional, descending ordering to this source.
+            </summary>
+            <typeparam name="TKey">The type by which the additional descending ordering is ordered.</typeparam>
+            <param name="keySelector">The expression that returns the additional descending ordering.</param>
+            <returns>
+            A new source that is additionally, descendingly ordered by the <paramref name="keySelector"/>.
+            </returns>
+        </member>
+        <member name="M:Pagination.Models.IOrderedPageSourceModel`2.Query">
+            <summary>
+            Creates a paginated results model from this paginated source.
+            </summary>
+            <returns>A new paginated results model from this paginated source, given its current ordering.</returns>
+        </member>
+        <member name="M:Pagination.Models.IOrderedPageSourceModel`2.MaxItemsPerPage(System.Int32)">
+            <summary>
+            Returns a new ordered page source with the specified maximum number of items displayed on a page.
+            </summary>
+            <param name="value">The maximum number of items that can be displayed on a page.</param>
+            <returns>A new ordered page source with the specified maximum number of items displayed on a page.</returns>
+        </member>
+        <member name="M:Pagination.Models.IOrderedPageSourceModel`2.DefaultItemsPerPage(System.Int32)">
+            <summary>
+            Returns a new ordered page source with the specified default number of items displayed on a page.
+            </summary>
+            <param name="value">The default number of items that are displayed on a page.</param>
+            <returns>A new ordered page source with the specified default number of items displayed on a page.</returns>
+        </member>
+        <member name="T:Pagination.Abstractions.IOrderedSource`1">
+            <summary>
+            Interface for an ordered queryable source of elements.
+            </summary>
+            <typeparam name="T">The type of element in the source.</typeparam>
+        </member>
+        <member name="T:Pagination.Abstractions.ISource`1">
+            <summary>
+            Interface for the underlying source for paged results.
+            </summary>
+            <typeparam name="T">The type of element in the source.</typeparam>
+        </member>
+        <member name="M:Pagination.Abstractions.ISource`1.Count">
+            <summary>
+            Counts the total number of elements in this data source.
+            </summary>
+            <returns>The total number of elements in this data source.</returns>
+        </member>
+        <member name="M:Pagination.Abstractions.ISource`1.Take(System.Int32)">
+            <summary>
+            Returns a new source with the first <paramref name="count"/> number
+            of elements from this source.
+            </summary>
+            <param name="count">The number of elements from this source to be returned.</param>
+            <returns>
+            A new source with the first <paramref name="count"/> number
+            of elements from this source.
+            </returns>
+        </member>
+        <member name="M:Pagination.Abstractions.ISource`1.OrderBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Returns a new source whose elements are ordered by the <paramref name="keySelector"/>.
+            </summary>
+            <typeparam name="TKey">The return type of the key by which the elements are ordered.</typeparam>
+            <param name="keySelector">The expression that returns the key by which the elements are ordered.</param>
+            <returns>
+            A new source whose elements are ordered by the <paramref name="keySelector"/>.
+            </returns>
+        </member>
+        <member name="M:Pagination.Abstractions.ISource`1.OrderByDescending``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Returns a new source whose elements are descendingly ordered by the <paramref name="keySelector"/>.
+            </summary>
+            <typeparam name="TKey">The return type of the key by which the elements are descendingly ordered.</typeparam>
+            <param name="keySelector">The expression that returns the key by which the elements are descendingly ordered.</param>
+            <returns>
+            A new source whose elements are descendingly ordered by the <paramref name="keySelector"/>.
+            </returns>
+        </member>
+        <member name="P:Pagination.Abstractions.ISource`1.Queryable">
+            <summary>
+            Gets the underlying <see cref="T:IQueryable{T}"/> object used to create this <see cref="T:ISource{T}"/>.
+            </summary>
+        </member>
+        <member name="M:Pagination.Abstractions.IOrderedSource`1.Skip(System.Int32)">
+            <summary>
+            Returns an <see cref="T:ISource{T}"/> that contains all elements in this <see cref="T:IOrderedSource{T}"/>
+            after skipping the specified <paramref name="count"/> number of elements.
+            </summary>
+            <param name="count">The number of elements in this <see cref="T:IOrderedSource{T}"/> to be skipped.</param>
+            <returns>
+            An <see cref="T:ISource{T}"/> that contains all elements in this <see cref="T:IOrderedSource{T}"/>
+            after skipping the specified <paramref name="count"/> number of elements.
+            </returns>
+        </member>
+        <member name="M:Pagination.Abstractions.IOrderedSource`1.ThenBy``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Returns an <see cref="T:IOrderedSource{T}"/> that is ordered by this <see cref="T:IOrderedSource{T}"/>
+            and then additionally ordered by the <paramref name="keySelector"/>.
+            </summary>
+            <typeparam name="TKey">
+            The type of object by which this <see cref="T:IOrderedSource{T}"/> is to be additionally ordered.
+            </typeparam>
+            <param name="keySelector">
+            An <see cref="T:System.Linq.Expressions.Expression`1"/> that returns the property by which this <see cref="T:IOrderedSource{T}"/>
+            is to be additionally ordered.
+            </param>
+            <returns>
+            An <see cref="T:IOrderedSource{T}"/> that is ordered by this <see cref="T:IOrderedSource{T}"/>
+            and then additionally ordered by the <paramref name="keySelector"/>.
+            </returns>
+        </member>
+        <member name="M:Pagination.Abstractions.IOrderedSource`1.ThenByDescending``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Returns an <see cref="T:IOrderedSource{T}"/> that is ordered by this <see cref="T:IOrderedSource{T}"/>
+            and then additionally ordered by the <paramref name="keySelector"/> descending.
+            </summary>
+            <typeparam name="TKey">
+            The type of object by which this <see cref="T:IOrderedSource{T}"/> is to be additionally descendingly ordered.
+            </typeparam>
+            <param name="keySelector">
+            An <see cref="T:System.Linq.Expressions.Expression`1"/> that returns the property by which this <see cref="T:IOrderedSource{T}"/>
+            is to be additionally descendingly ordered.
+            </param>
+            <returns>
+            An <see cref="T:IOrderedSource{T}"/> that is ordered by this <see cref="T:IOrderedSource{T}"/>
+            and then additionally ordered by the <paramref name="keySelector"/> descending.
+            </returns>
+        </member>
+        <member name="P:Pagination.Abstractions.IOrderedSource`1.Queryable">
+            <summary>
+            Gets the underlying <see cref="T:IOrderedQueryable{T}"/> of this <see cref="T:IOrderedSource{T}"/>.
+            </summary>
+        </member>
+        <member name="T:Pagination.Models.IPageChainModel">
+            <summary>
+            Interface for a collection of <see cref="T:IPageLinkModel"/>.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageChainModel.TotalItemCount">
+            <summary>
+            The total number of items on all of the linked page objects combined.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageChainModel.TotalPageCount">
+            <summary>
+            The total number of pages on all of the linked page objects combined.
+            </summary>
+        </member>
+        <member name="T:Pagination.Models.IPageLinkModel">
+            <summary>
+            Interface for a link in a chain of pages.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageLinkModel.LinkPage">
+            <summary>
+            The page to which this link points.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageLinkModel.LinkPageBase0">
+            <summary>
+            The page to which this link points if the first page is zero (0).
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageLinkModel.LinkPageBase1">
+            <summary>
+            The page to which this link points if the first page is one (1).
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageLinkModel.LowerPage">
+            <summary>
+            The lower page number of this link, or the page if this link
+            is not a range of pages.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageLinkModel.UpperPage">
+            <summary>
+            The upper page number of this link, or the page if this link
+            is not a range of pages.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageLinkModel.IsPageRange">
+            <summary>
+            <c>true</c> if this link is a range of pages. Otherwise, <c>false</c>.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageLinkModel.IsRequestedPage">
+            <summary>
+            <c>true</c> if this link represents the requested page number. Otherwise, <c>false</c>.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageLinkModel.LinkText">
+            <summary>
+            The text to be displayed when communicating this page link.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageLinkModel.Request">
+            <summary>
+            The request made that caused this page link to be created.
+            </summary>
+        </member>
+        <member name="T:Pagination.PageSourceFactory">
+            <summary>
+            Factory that provides methods for creating ordered and unordered
+            page data source objects.
+            </summary>
+        </member>
+        <member name="M:Pagination.PageSourceFactory.CreateSource``2(System.Linq.IQueryable{``0},``1)">
+            <summary>
+            Creates a new page data source from the given <paramref name="source"/> and <paramref name="request"/>.
+            </summary>
+            <typeparam name="TSource">The type of the items in the underlying data source.</typeparam>
+            <typeparam name="TRequest">The type of request for which the data source is created.</typeparam>
+            <param name="source">The underlying data source of the page source.</param>
+            <param name="request">The request for which the data source is created.</param>
+            <returns>A new instance of a paged data source.</returns>
+            <remarks>
+            If <paramref name="source"/> implements the type <see cref="T:IOrderedQueryable{TSource}"/>,
+            and instance of <see cref="T:IOrderedPageSourceModel{TSource, TRequest}"/> will be created and returned.
+            </remarks>
+        </member>
+        <member name="M:Pagination.PageSourceFactory.CreateSource``2(System.Linq.IOrderedQueryable{``0},``1)">
+            <summary>
+            Creates a new page data source from the given <paramref name="source"/> and <paramref name="request"/>.
+            </summary>
+            <typeparam name="TSource">The type of the items in the underlying data source.</typeparam>
+            <typeparam name="TRequest">The type of request for which the data source is created.</typeparam>
+            <param name="source">The underlying data source of the page source.</param>
+            <param name="request">The request for which the data source is created.</param>
+            <returns>A new instance of a paged data source.</returns>
+        </member>
+        <member name="M:Pagination.PageSourceFactory.CreateSource``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Creates a new page data source from the given <paramref name="source"/>.
+            </summary>
+            <typeparam name="TSource">The type of the items in the underlying data source.</typeparam>
+            <param name="source">The underlying data source of the page source.</param>
+            <param name="itemsPerPage">The number of items to be displayed on a page.</param>
+            <param name="requestedPage">The requested page to be displayed.</param>
+            <returns>A new instance of a paged data source.</returns>
+            <remarks>
+            If <paramref name="source"/> implements the type <see cref="T:IOrderedQueryable{TSource}"/>,
+            and instance of <see cref="T:IOrderedPageSourceModel"/> will be created and returned.
+            </remarks>
+        </member>
+        <member name="M:Pagination.PageSourceFactory.CreateSource``1(System.Linq.IOrderedQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Creates a new page data source from the given <paramref name="source"/>.
+            </summary>
+            <typeparam name="TSource">The type of the items in the underlying data source.</typeparam>
+            <param name="source">The underlying data source of the page source.</param>
+            <param name="itemsPerPage">The number of items to be displayed on a page.</param>
+            <param name="requestedPage">The requested page to be displayed.</param>
+            <returns>A new instance of a paged data source.</returns>
+        </member>
+        <member name="M:Pagination.PageSourceFactory.CreateSource``1(System.Linq.IQueryable{``0},System.Int32)">
+            <summary>
+            Creates a new page data source from the given <paramref name="source"/>.
+            </summary>
+            <typeparam name="TSource">The type of the items in the underlying data source.</typeparam>
+            <param name="source">The underlying data source of the page source.</param>
+            <param name="requestedPage">The requested page to be displayed.</param>
+            <returns>A new instance of a paged data source.</returns>
+            <remarks>
+            If <paramref name="source"/> implements the type <see cref="T:IOrderedQueryable{TSource}"/>,
+            and instance of <see cref="T:IOrderedPageSourceModel"/> will be created and returned.
+            </remarks>
+        </member>
+        <member name="M:Pagination.PageSourceFactory.CreateSource``1(System.Linq.IOrderedQueryable{``0},System.Int32)">
+            <summary>
+            Creates a new page data source from the given <paramref name="source"/>.
+            </summary>
+            <typeparam name="TSource">The type of the items in the underlying data source.</typeparam>
+            <param name="source">The underlying data source of the page source.</param>
+            <param name="requestedPage">The requested page to be displayed.</param>
+            <returns>A new instance of a paged data source.</returns>
+        </member>
+        <member name="M:Pagination.PageSourceFactory.CreateSource``1(System.Linq.IQueryable{``0})">
+            <summary>
+            Creates a new page data source from the given <paramref name="source"/>.
+            </summary>
+            <typeparam name="TSource">The type of the items in the underlying data source.</typeparam>
+            <param name="source">The underlying data source of the page source.</param>
+            <returns>A new instance of a paged data source.</returns>
+            <remarks>
+            If <paramref name="source"/> implements the type <see cref="T:IOrderedQueryable{TSource}"/>,
+            and instance of <see cref="T:IOrderedPageSourceModel"/> will be created and returned.
+            </remarks>
+        </member>
+        <member name="M:Pagination.PageSourceFactory.CreateSource``1(System.Linq.IOrderedQueryable{``0})">
+            <summary>
+            Creates a new page data source from the given <paramref name="source"/>.
+            </summary>
+            <typeparam name="TSource">The type of the items in the underlying data source.</typeparam>
+            <param name="source">The underlying data source of the page source.</param>
+            <returns>A new instance of a paged data source.</returns>
+        </member>
+        <member name="P:Pagination.PageSourceFactory.MaxItemsPerPage">
+            <summary>
+            Gets or sets the maximum number of items that can be
+            shown on a single page of data source results.
+            </summary>
+        </member>
+        <member name="P:Pagination.PageSourceFactory.DefaultItemsPerPage">
+            <summary>
+            Gets or sets the default number of items that are
+            shown on a page of data source results.
+            </summary>
+        </member>
+        <member name="T:Pagination.Models.IPageRequestModel">
+            <summary>
+            Interface for requests that can specify pagination options.
+            </summary>
+        </member>
+        <member name="M:Pagination.Models.IPageRequestModel.GetRequestValues">
+            <summary>
+            Gets a collection of the values necessary to duplicate this page request.
+            </summary>
+            <returns>The collection of values necessary to duplicate this page request.</returns>
+        </member>
+        <member name="M:Pagination.Models.IPageRequestModel.GetRequestValues(System.Int32)">
+            <summary>
+            Gets a colletion of the values necessary to duplicate this page request for the specified <paramref name="requestedPage"/>.
+            </summary>
+            <param name="requestedPage">The page to which the request values direct.</param>
+            <returns>The collection of values necessary to duplicate this page request for the specified <paramref name="requestedPage"/>.</returns>
+        </member>
+        <member name="P:Pagination.Models.IPageRequestModel.ItemsPerPage">
+            <summary>
+            Gets the requested number of items per page.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageRequestModel.RequestedPage">
+            <summary>
+            Gets the requested page.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageRequestModel.RequestedPageBase0">
+            <summary>
+            Gets the requested page if zero (0) is the first page.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageRequestModel.RequestedPageBase1">
+            <summary>
+            Gets the requested page if one (1) is the first page.
+            </summary>
+        </member>
+        <member name="T:Pagination.Models.IPageResultsModel">
+            <summary>
+            Interface for the results of a pagination request.
+            </summary>
+        </member>
+        <member name="M:Pagination.Models.IPageResultsModel.LinkPages">
+            <summary>
+            Creates a collection of <see cref="T:IPageLinkModel"/> that can be used to display pagination.
+            </summary>
+            <returns>
+            A new <see cref="T:IPageChainModel"/> that contains the collection of <see cref="T:IPageLinkModel"/> that can be used to display pagination.
+            </returns>
+        </member>
+        <member name="M:Pagination.Models.IPageResultsModel.LinkPages(Pagination.PageLinker)">
+            <summary>
+            Creates a collection of <see cref="T:IPageLinkModel"/> using the specified <paramref name="pageLinker"/> that can be used to display pagination.
+            </summary>
+            <param name="pageLinker">The <see cref="T:PageLinker"/> that creates the <see cref="T:IPageChainModel"/>.</param>
+            <returns>
+            A new <see cref="T:IPageChainModel"/> that contains the collection of <see cref="T:IPageLinkModel"/> that can be used to display pagination.
+            </returns>
+        </member>
+        <member name="P:Pagination.Models.IPageResultsModel.TotalPageCount">
+            <summary>
+            The total number of pages available for the request.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.IPageResultsModel.TotalItemCount">
+            <summary>
+            The total number of items available for the request.
+            </summary>
+        </member>
+        <member name="T:Pagination.Models.IPageResultsModel`1">
+            <summary>
+            Interface for the results of a pagination request.
+            </summary>
+            <typeparam name="TSource">The type of element in the source from which the results came.</typeparam>
+        </member>
+        <member name="P:Pagination.Models.IPageResultsModel`1.Results">
+            <summary>
+            The results of the page request.
+            </summary>
+        </member>
+        <member name="T:Pagination.Models.IPageResultsModel`2">
+            <summary>
+            Interface for the results of a pagination request.
+            </summary>
+            <typeparam name="TSource">The type of element in the source from which the results came.</typeparam>
+            <typeparam name="TRequest">The type of request that was made to create the results.</typeparam>
+        </member>
+        <member name="P:Pagination.Models.IPageResultsModel`2.Source">
+            <summary>
+            The source from which the results of the page request came.
+            </summary>
+        </member>
+        <member name="T:Pagination.Models.PageRequestModel">
+            <summary>
+            An object representing a request for a specific page of a data set.
+            </summary>
+        </member>
+        <member name="M:Pagination.Models.PageRequestModel.GetRequestValues">
+            <summary>
+            Gets a dictionary that contains the values necessary to duplicate this request.
+            </summary>
+            <returns>A dictionary that contains the values necessary to duplicate this request.</returns>
+        </member>
+        <member name="M:Pagination.Models.PageRequestModel.GetRequestValues(System.Int32)">
+            <summary>
+            Gets a dictionary that contains the values necessary to duplicate this request for the specified <paramref name="requestedPage"/>.
+            </summary>
+            <param name="requestedPage">The requested page of the request.</param>
+            <returns>A dictionary that contains the values necessary to duplicate this request for the specified <paramref name="requestedPage"/>.</returns>
+        </member>
+        <member name="P:Pagination.Models.PageRequestModel.ItemsPerPage">
+            <summary>
+            Gets or sets the requested number of items per page.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.PageRequestModel.RequestedPage">
+            <summary>
+            Gets or sets the requested page.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.PageRequestModel.RequestedPageBase0">
+            <summary>
+            Gets the requested page if zero (0) is the first page.
+            </summary>
+        </member>
+        <member name="P:Pagination.Models.PageRequestModel.RequestedPageBase1">
+            <summary>
+            Gets the requested page if one (1) is the first page.
+            </summary>
+        </member>
+        <member name="T:Pagination.PaginatedHtml">
+            <summary>
+            Extension methods for instances of <see cref="T:HtmlHelper"/> that interact with Pagination models.
+            </summary>
+        </member>
+        <member name="M:Pagination.PaginatedHtml.PageLink(System.Web.Mvc.HtmlHelper,Pagination.Models.IPageLinkModel,System.Object)">
+            <summary>
+            Creates an HTML hyperlink that links to the page represented by the <paramref name="model"/>.
+            </summary>
+            <param name="htmlHelper">
+            The instance of <see cref="T:HtmlHelper"/> that creates the hyperlink.
+            </param>
+            <param name="model">
+            The <see cref="T:IPageLinkModel"/> that represents the page to be linked.
+            </param>
+            <param name="htmlAttributes">
+            An object that contains the HTML attributes for the hyperlink. The attributes
+            are retrieved through reflection by examining the properties of the object.
+            The object is typically created by using object initializer syntax.
+            </param>
+            <returns>
+            The HTML hyperlink.
+            </returns>
+        </member>
+        <member name="M:Pagination.PaginatedHtml.PageLink(System.Web.Mvc.HtmlHelper,Pagination.Models.IPageLinkModel,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Creates an HTML hyperlink that links to the page represented by the <paramref name="model"/>.
+            </summary>
+            <param name="htmlHelper">
+            The instance of <see cref="T:HtmlHelper"/> that creates the hyperlink.
+            </param>
+            <param name="model">
+            The <see cref="T:IPageLinkModel"/> that represents the page to be linked.
+            </param>
+            <param name="htmlAttributes">
+            An object that contains the HTML attributes to set for the hyperlink.
+            </param>
+            <returns>
+            The HTML hyperlink.
+            </returns>
+        </member>
+        <member name="M:Pagination.PaginatedHtml.PageLink(System.Web.Mvc.HtmlHelper,Pagination.Models.IPageLinkModel)">
+            <summary>
+            Creates an HTML hyperlink that links to the page represented by the <paramref name="model"/>.
+            </summary>
+            <param name="htmlHelper">
+            The instance of <see cref="T:HtmlHelper"/> that creates the hyperlink.
+            </param>
+            <param name="model">
+            The <see cref="T:IPageLinkModel"/> that represents the page to be linked.
+            </param>
+            <returns>
+            The HTML hyperlink.
+            </returns>
+        </member>
+        <member name="T:Pagination.PaginatedRequestModel">
+            <summary>
+            MVC extension methods for objects that implement the <see cref="T:IPageRequestModel"/> interface.
+            </summary>
+        </member>
+        <member name="M:Pagination.PaginatedRequestModel.GetRouteValues(Pagination.Models.IPageRequestModel)">
+            <summary>
+            Creates an instance of <see cref="T:RouteValueDictionary"/> that contains the route information
+            necessary to duplicate the <paramref name="pageRequestModel"/>.
+            </summary>
+            <param name="pageRequestModel">The model for which the <see cref="T:RouteValueDictionary"/> is created.</param>
+            <returns>
+            A new instance of <see cref="T:RouteValueDictionary"/> with the route information necessary to
+            duplicate the <paramref name="pageRequestModel"/>.
+            </returns>
+        </member>
+        <member name="M:Pagination.PaginatedRequestModel.GetRouteValues(Pagination.Models.IPageRequestModel,System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:RouteValueDictionary"/> that contains the route information
+            necessary to duplicate the <paramref name="pageRequestModel"/> for the given <paramref name="requestedPage"/>.
+            </summary>
+            <param name="pageRequestModel">The model for which the <see cref="T:RouteValueDictionary"/> is created.</param>
+            <param name="requestedPage">The requested page for which the <see cref="T:RouteValueDictionary"/> is created.</param>
+            <returns>
+            A new instance of <see cref="T:RouteValueDictionary"/> with the route information necessary to
+            duplicate the <paramref name="pageRequestModel"/> for the given <paramref name="requestedPage"/>.
+            </returns>
+        </member>
+        <member name="T:Pagination.PaginatedUrl">
+            <summary>
+            Extension methods for instances of <see cref="T:UrlHelper"/> that
+            privide interaction with Pagination models.
+            </summary>
+        </member>
+        <member name="M:Pagination.PaginatedUrl.Page(System.Web.Mvc.UrlHelper,Pagination.Models.IPageLinkModel)">
+            <summary>
+            Creates a URL that can be used to access the page represented
+            by the instance of <see cref="T:IPageLinkModel"/>.
+            </summary>
+            <param name="urlHelper">
+            The <see cref="T:UrlHelper"/> instance that this method extends.
+            </param>
+            <param name="model">
+            The <see cref="T:IPageLinkModel"/> for which the URL is to be created.
+            </param>
+            <returns>
+            A URL that can be used to access the page represented by the given <paramref name="model"/>.
+            </returns>
+        </member>
+    </members>
+</doc>

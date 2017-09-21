@@ -1,0 +1,124 @@
+﻿@model IEnumerable<jdean_blog.Models.Post>  
+        @*IEnumerable= interface (method declaration only, no implementation); allows for foreach loops*@
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Recent Posts</h2>
+
+<p> @if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("Create", "Posts")" class="btn btn-default">CREATE NEW POST</a>
+}
+</p>
+
+<div class="blog-single-post">
+    @foreach (var item in Model)
+{
+        <div class="post-image">
+            @if (item.MediaUrl != null)
+            {
+                <img class="img-responsive" src="@Url.Content(item.MediaUrl)" alt="">
+            }
+        </div>
+        <div class="post-excerpt">
+            <div class="row">
+                <div class="col-sm-5">
+                    <h2 class="blog-title">@Html.DisplayFor(modelItem => item.Title)</h2>
+                    <ul class="list-unstyled post-meta">
+                        <li>Jessica Dean</li>
+                        <li><a href="">Category</a></li>
+                        <li>@Html.DisplayFor(modelItem => item.Created)</li>
+                    </ul>
+                   
+                </div>
+                <div class="col-sm-7">
+                    
+                        @if (item.Body != null && item.Body.Length > 500)
+                        {
+                        <p> @Html.Raw(item.Body.Substring(0, 250))</p>
+                        }
+                        else
+                        {
+                            <p> @Html.Raw(item.Body)</p>
+                        }
+                        @Html.ActionLink("Read More", "Details", new { slug = item.Slug })
+
+                    
+                </div>
+            </div>
+        </div> }
+    </div>
+    <!-- Ends: .blog-single-post -->
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            Body
+        </th>
+        <th>
+            Posted
+        </th>
+        <th>
+            Posted On
+        </th>
+        <th>
+            Updated On
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.MediaUrl)
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+    @*<a href="@Url.Action("Details", "Posts", new { id = item.Id })"></a>*@
+       
+</td> 
+    <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+           @if (item.Body !=null && item.Body.Length > 200)
+           {
+            <p> @Html.Raw(item.Body.Substring(0, 150))</p>
+           }
+           else
+           {
+            <p> @Html.Raw(item.Body)</p>
+           }
+            @Html.ActionLink("Read More", "Details", new { slug = item.Slug })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Updated)
+        </td>
+       @Html.ActionLink(item.Title, "Details", new { slug = item.Slug }) |
+        <td>
+            @if (item.MediaUrl != null)
+            {
+                <img class="img-responsive" src="@Url.Content(item.MediaUrl)" alt="">
+            }
+        </td>
+        
+       @if (User.IsInRole("Admin"))
+        {
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+            
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+        }
+    </tr>
+}
+
+</table>

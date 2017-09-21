@@ -1,0 +1,246 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Jessica Dean | Blog</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @*@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Assets/images/favicon4.ico" type="image/x-icon">
+    <link rel="icon" href="~/Assets/images/favicon4.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/Assets/css/assets/bootstrap.min.css">
+    <!-- Fontawesome Icon -->
+    <link rel="stylesheet" href="~/Assets/css/assets/font-awesome.min.css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="~/Assets/css/assets/owl.carousel.min.css">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="~/Assets/css/assets/magnific-popup.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/Assets/css/assets/animate.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700|Raleway:300,400,500,600" rel="stylesheet">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="~/Assets/css/assets/normalize.css">
+    <link rel="stylesheet" href="~/Assets/css/style.css">
+    <link rel="stylesheet" href="~/Assets/css/assets/responsive.css">
+
+    <!-- Style Switcher -->
+    @*<link rel="stylesheet" href="css/colors/default-blue.css" id="color-switch">*@
+    <!-- teamplate colors -->
+    <!-- <link rel="stylesheet" href="css/colors/turquoise.css">-->
+    <!-- <link rel="stylesheet" href="css/colors/light-green.css"> -->
+    <!-- <link rel="stylesheet" href="css/colors/purple.css"> -->
+    <link rel="stylesheet" href="~/Assets/css/colors/yellow.css">
+    <!-- <link rel="stylesheet" href="css/colors/brown.css"> -->
+
+</head>
+<body>
+    <!-- Sidenav -->
+    <section class="sidenav">
+        <img src="~/Assets/images/sidenav-img03.jpg" alt="" class="img-responsive sidenav-img">
+        <p class="sidenav-desc">Thanks for stopping by.</p>
+        <h6 class="mt-40">Get in Touch</h6>
+        <address class="info-address">Downtown<br>Greensboro, NC  </address>
+        <p>Phone: + 1.316.789.3704</p>
+        <p>Email: <a href="mailto:jessicadeanblog@gmail.com">jessicadeanblog@gmail.com</a></p>
+        <p></p>
+        <div class="social-icons nobase dark mt-40">
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-instagram"></i></a>
+            
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            
+        </div>
+        <a href="#" id="sidenav-close">
+            <i class="fa fa-times"></i>
+        </a>
+    </section> <!-- end sidenav -->
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Header -->
+        <header>
+            <div class="main-menu">
+                <nav class="navbar" id="main-nav">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <!-- Change Logo Here -->
+                                    <a class="navbar-brand" data-scroll="" href="#header">Jessica<span>Dean</span><i class="fa fa-code"></i></a>
+                                </div>
+                                <!-- Fullscreen search -->
+                                <div class="search-wrap">
+                                    <div class="search-inner">
+                                        <div class="search-cell">
+                                            <form method="get">
+                                                <div class="search-field-holder">
+                                                    <input type="search" class="form-control main-search-input" placeholder="Type & Hit Enter...">
+                                                    <i class="fa fa-times" id="search-close"></i>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div> <!-- end fullscreen search -->
+                                <div class="collapse navbar-collapse" id="defaultNavbar1">
+                                    <ul class="nav navbar-nav pull-right">
+                                        <li class="active"><a @*data-scroll*@ href="http://www.jdean-portfolio.azurewebsites.net">Home</a></li>
+                                        <li><a href="http://jdean-portfolio.azurewebsites.net/#about" target="_blank">About</a></li>
+                                        <li><a href="http://jdean-portfolio.azurewebsites.net/assets/documents/jessicadean1.pdf" target="_blank">Resume</a></li>
+                                        <li><a href="http://jdean-portfolio.azurewebsites.net/#works" target="_blank">Portfolio</a></li>
+                                        <li>@Html.ActionLink("Blog","Index","Posts")</li>
+                                        <li>@Html.ActionLink("Contact","Contact","Home")</li>
+                                        <li class="nav-right hidden-xs">
+                                            <ul class="list-unstyled">
+                                                <li class="nav-search-wrap hidden-xs">
+                                                    <a href="#" class="nav-search search-trigger">
+                                                        <i class="fa fa-search"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-icon-wrap hidden-sm hidden-xs">
+                                                    <div id="nav-icon">
+                                                        <div class="nav-icon-inner">
+                                                            <a href="#" id="nav-icon-trigger" class="nav-icon-trigger">
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                                <span></span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li><!-- Ends .nav-right -->
+                                        <li id="mobile-search" class="hidden-lg hidden-md hidden-sm">
+                                            <form method="get" class="mobile-search">
+                                                <input type="search" class="form-control" placeholder="Search...">
+                                                <button type="submit" class="search-button">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div><!-- .navbar-collapse -->
+                            </div><!-- .container -->
+                        </div>
+                    </div>
+                </nav>
+            </div><!-- Ends: .main-menu -->
+        </header><!-- Ends: header -->
+        <!-- Page Header -->
+        <section class="page-heading">
+            <div class="page-heading-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4 page-name">
+                            <h2><span>Blog</span> Page</h2>
+                            <ul class="list-unstyled breadcrumb">
+                                <li><a href="">Home</a></li>
+                                <li class="active">Blog</li>
+                            </ul>                   </div>
+                       
+                        <div class="col-sm-8 page-desc">
+                            <h2>Find My All <span>Blog Posts</span> Here</h2>
+                            <div>
+                                <section id="login">
+                                    @Html.Partial("_LoginPartial")
+                                </section>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- Ends: .page-heading -->
+        <!-- Blog Container -->
+        <div class="blog-single-wrapper">
+            <div class="container">
+                <div class="row">
+                    
+                    <!-- Blog Content -->
+                            
+                            <!-- Blog Content -->
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="blog-single-inner">
+                                    @*<div class="blog-single-post">
+                                        <div class="post-image">
+                                            <img src="~/Assets/images/blog-post01.jpg" alt="" class="img-responsive">
+                                        </div>
+                                        <div class="post-excerpt">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <h2 class="blog-title"><a href="">Blog Post Title Goes Here</a></h2>
+                                                    <ul class="list-unstyled post-meta">
+                                                        <li>John Smith</li>
+                                                        <li><a href="">Category</a></li>
+                                                        <li>23 Jul 2017</li>
+                                                    </ul>
+                                                    <a href="" class="post-details-btn">Read More</a>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <p> </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@<!-- Ends: .blog-single-post -->
+@RenderBody()
+                                    @*!-- Ends: .blog-single-post -->*@
+                                    <div class="blog-pagination" hidden>
+                                        <ul class="list-unstyled">
+                                            <li><a href=""><i class="fa fa-angle-left"></i></a></li>
+                                            <li class="active"><a href="">1</a></li>
+                                            <li><a href="">2</a></li>
+                                            <li><a href="">3</a></li>
+                                            <li><a href=""><i class="fa fa-angle-right"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div><!-- Ends: .blog-inner -->
+                            </div>
+                        </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 footer-content wow fadeIn">
+                        <p>&copy; 2017 All rights reserved | <i class="fa fa-heart"></i>Jessica Dean</p>
+                    </div>
+                </div>
+            </div>
+        </footer><!-- Ends: footer -->
+    </div><!-- Ends .main-wrapper -->
+    <!-- =========================================
+    JavaScript Files
+    ========================================== -->
+    <!-- jQuery JS -->
+    <script src="~/Assets/js/assets/vendor/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Assets/js/assets/bootstrap.min.js"></script>
+    <!-- Sticky JS -->
+    <script src="~/Assets/js/assets/jquery.sticky.js"></script>
+    <!-- Smooth Scroll -->
+    <script src="~/Assets/js/assets/smooth-scroll.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Assets/js/plugins.js"></script>
+    <script src="~/Assets/js/extra-pages.js"></script>
+
+
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

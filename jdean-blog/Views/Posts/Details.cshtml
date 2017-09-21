@@ -1,0 +1,107 @@
+﻿@model jdean_blog.Models.Post
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>@Html.DisplayFor(model => model.Title)</h2>
+
+<div>
+    <h4>Posted @Html.DisplayFor(model => model.Created)</h4>
+   
+    @if (Model.MediaUrl != null)
+    {   <img class="img-responsive" src="@Url.Content(Model.MediaUrl)" alt="">
+    }
+    <hr />
+    <dl class="dl-horizontal">
+        <dt></dt>
+
+        <dd>
+            @Html.Raw(Model.Body)
+        </dd>
+
+        <dt></dt>
+
+        <dd> </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Updated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Updated)
+        </dd>
+
+        <dt></dt>
+
+        <dd></dd>
+        @if (User.IsInRole("Admin")) { 
+        <dt>
+            @Html.DisplayNameFor(model => model.Published)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Published)
+        </dd>
+    
+        }
+
+    </dl>
+</div>
+
+<p>
+    @if (User.IsInRole ("Admin"))
+    {
+    @Html.ActionLink("Edit |", "Edit", new { id = Model.Id }) 
+    }
+    
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div class="blog-comment">
+    <div class="comment-heading">
+        <h2>Comments (3)</h2> @*Model.Count: see shopping cart?*@
+    </div>
+    <div class="comments-wrapper">
+        <div class="comment-single">
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="author-image">
+                <img src="images/profile01.jpg" alt="" class="img-responsive">
+            </div>
+            <div class="author-comment">
+                <h2>John Smith <span>2 hour ago</span></h2>
+                <p>@Html.Raw(comment.Body)</p>
+                <a href="">Reply</a>
+            </div>
+        }
+        </div><!-- Ends: .comment-single -->
+        
+    </div><!-- Ends: .cmments-wrapper -->
+</div><!-- Ends: .blog-comment -->
+
+<div class="blog-comment-form">
+    
+    <div class="comment-form-heading">
+        <h2>Leave A Comment</h2>
+    </div>
+    
+    @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+    {
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <input type="text" placeholder="Your Name" required>
+            </div>
+            <div class="col-sm-6">
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="col-sm-12">
+                <textarea placeholder="Message"></textarea>
+            </div>
+            <div class="col-sm-12">
+                <button type="submit">Send Comment</button>
+            </div>
+        </div>
+    }   
+<!-- Ends: .blog-comment-form -->
+<hr />

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<jdean_blog.Models.Post>  
+        @*IEnumerable= interface (method declaration only, no implementation); allows for foreach loops*@
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Recent Posts</h2>
+
+<p> @if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("Create", "Posts")" class="btn btn-default">CREATE NEW POST</a>
+}
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            
+        </th>
+        <th>
+            Posted
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Updated)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.MediaUrl)
+        </th>*@
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        @*<td>
+    <a href="@Url.Action("Details", "Posts", new { id = item.Id })">
+        @if (item.MediaUrl != null)
+        {
+            <img class="img-responsive" src="@Url.Content(item.MediaUrl)" alt="">
+        }
+    </a>
+</td>*@ 
+    <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Body)*@
+            @*@Html.Raw(item.Body)*@
+            
+                @{
+                    var myBlurb = String.Concat(item.Body.Take(125));
+                }
+                @Html.Raw(myBlurb)...
+            @Html.ActionLink("Read More", "Details", new { slug = item.Slug })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Updated)
+        </td>
+       @Html.ActionLink(item.Title, "Details", new { slug = item.Slug }) |
+        @*<td>
+            @Html.DisplayFor(modelItem => item.MediaUrl)
+        </td>*@
+        
+       @if (User.IsInRole("Admin"))
+        {
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+            
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+        }
+    </tr>
+}
+
+</table>
