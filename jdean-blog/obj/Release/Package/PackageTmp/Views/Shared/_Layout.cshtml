@@ -164,179 +164,52 @@
             </div>
         </section><!-- Ends: .page-heading -->
         <!-- Blog Container -->
-        <div class="blog-content-wrapper">
+        <div class="blog-single-wrapper">
             <div class="container">
                 <div class="row">
-                    <!-- Blog Sidebar -->
-                    <div class="col-sm-4">
-                        <div class="sidebar-inner">
-                            <div class="widget search" hidden>
-                                <div class="widget-title">
-                                    <h2>Search</h2>
-                                </div>
-                                <div class="widget-content">
-                                    <form action="#">
-                                        <input type="text" placeholder="Search here">
-                                        <button type="submit"><i class="fa fa-search"></i></button>
-                                    </form>
-                                </div>
-                            </div><!-- Ends: .search -->
-                            <div class="widget recent-post" >
-                                <div class="widget-title">
-                                    <h2>Recent Posts</h2>
-                                </div>
-                                <div class="widget-content">
-                                                                      
-                                    <ul class="list-unstyled">
-                                        <li>@Html.ActionLink("Recent Posts","Index","Posts")</li>
-                                      
-                                   </ul>
-                                </div>
-                            </div><!-- Ends: .recent-post -->
-                            <div class="widget categories" hidden>
-                                <div class="widget-title">
-                                    <h2>Categories</h2>
-                                </div>
-                                <div class="widget-content">
-                                    <ul class="list-unstyled">
-                                        <li><a href="">CSS</a></li>
-                                        <li><a href="">C#</a></li>
-                                        <li><a href="">Jquery</a></li>
-                                        <li><a href="">MVC</a></li>
-                                        <li><a href="">Javascript</a></li>
-                                        
-                                    </ul>
-                                </div>
-                            </div><!-- Ends: .categories -->
-                            <div class="widget tags">
-                                <div class="widget-title"hidden>
-                                    <h2>Tags</h2>
-                                    
-                                </div>
-                                <div class="widget-content" hidden>
-                                    <ul class="list-unstyled">
-                                        <li><a href="">PHP</a></li>
-                                        <li><a href="">Web Design</a></li>
-                                        <li><a href="">HTML</a></li>
-                                        <li><a href="">CSS</a></li>
-                                        <li><a href="">Wordpress</a></li>
-                                        <li><a href="">SEO</a></li>
-                                        <li><a href="">Marketing</a></li>
-                                        <li><a href="">Clean</a></li>
-                                        <li><a href="">Code</a></li>
-                                        <li><a href="">jQuery</a></li>
-                                    </ul>
-                                </div>
-                            </div><!-- Ends: .tags -->
-                        </div>
-                    </div><!-- Ends: .blog-sidebar -->
+                    
                     <!-- Blog Content -->
-                    <div class="col-sm-8">
-                        <div class="blog-inner">
-                        @RenderBody()
-                            @*<div class="blog-single-post">
-                                <div class="post-image">
-                                    <img src="images/blog-post01.jpg" alt="" class="img-responsive">
-                                </div>
-                                <div class="post-excerpt">
-                                    <div class="row">
-                                        <div class="col-sm-5">
-                                            <h2 class="blog-title"><a href="">Blog Post Title Goes Here</a></h2>
-                                            <ul class="list-unstyled post-meta">
-                                                <li>John Smith</li>
-                                                <li><a href="">Category</a></li>
-                                                <li>23 Jul 2017</li>
-                                            </ul>
-                                            <a href="" class="post-details-btn">Read More</a>
+                            
+                            <!-- Blog Content -->
+                            <div class="col-sm-10 col-sm-offset-1">
+                                <div class="blog-single-inner">
+                                    @*<div class="blog-single-post">
+                                        <div class="post-image">
+                                            <img src="~/Assets/images/blog-post01.jpg" alt="" class="img-responsive">
                                         </div>
-                                        <div class="col-sm-7">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et amet facilis hic provident asperiores nam in fugiat. Odit non unde quibusdam suscipit officiis, voluptate laborum reprehenderit dignissimos cup iditate, inventore impedit sed! Impedit neque.</p>
+                                        <div class="post-excerpt">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <h2 class="blog-title"><a href="">Blog Post Title Goes Here</a></h2>
+                                                    <ul class="list-unstyled post-meta">
+                                                        <li>John Smith</li>
+                                                        <li><a href="">Category</a></li>
+                                                        <li>23 Jul 2017</li>
+                                                    </ul>
+                                                    <a href="" class="post-details-btn">Read More</a>
+                                                </div>
+                                                <div class="col-sm-7">
+                                                    <p> </p>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>*@<!-- Ends: .blog-single-post -->
+@RenderBody()
+                                    @*!-- Ends: .blog-single-post -->*@
+                                    <div class="blog-pagination" hidden>
+                                        <ul class="list-unstyled">
+                                            <li><a href=""><i class="fa fa-angle-left"></i></a></li>
+                                            <li class="active"><a href="">1</a></li>
+                                            <li><a href="">2</a></li>
+                                            <li><a href="">3</a></li>
+                                            <li><a href=""><i class="fa fa-angle-right"></i></a></li>
+                                        </ul>
                                     </div>
-                                </div>
-                            </div><!-- Ends: .blog-single-post -->
-                            <div class="blog-single-post">
-                                <div class="post-image">
-                                    <img src="images/blog-post02.jpg" alt="" class="img-responsive">
-                                </div>
-                                <div class="post-excerpt">
-                                    <div class="row">
-                                        <div class="col-sm-5">
-                                            <h2 class="blog-title"><a href="">Blog Post Title Goes Here</a></h2>
-                                            <ul class="list-unstyled post-meta">
-                                                <li>John Smith</li>
-                                                <li><a href="">Category</a></li>
-                                                <li>23 Jul 2017</li>
-                                            </ul>
-                                            <a href="" class="post-details-btn">Read More</a>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et amet facilis hic provident asperiores nam in fugiat. Odit non unde quibusdam suscipit officiis, voluptate laborum reprehenderit dignissimos cup iditate, inventore impedit sed! Impedit neque.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- Ends: .blog-single-post -->
-                            <div class="blog-single-post">
-                                <div class="post-image">
-                                    <img src="images/blog-post03.jpg" alt="" class="img-responsive">
-                                </div>
-                                <div class="post-excerpt">
-                                    <div class="row">
-                                        <div class="col-sm-5">
-                                            <h2 class="blog-title"><a href="">Blog Post Title Goes Here</a></h2>
-                                            <ul class="list-unstyled post-meta">
-                                                <li>John Smith</li>
-                                                <li><a href="">Category</a></li>
-                                                <li>23 Jul 2017</li>
-                                            </ul>
-                                            <a href="" class="post-details-btn">Read More</a>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et amet facilis hic provident asperiores nam in fugiat. Odit non unde quibusdam suscipit officiis, voluptate laborum reprehenderit dignissimos cup iditate, inventore impedit sed! Impedit neque.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- Ends: .blog-single-post -->
-                            <div class="blog-single-post">
-                                <div class="post-image">
-                                    <img src="images/blog-post04.jpg" alt="" class="img-responsive">
-                                </div>
-                                <div class="post-excerpt">
-                                    <div class="row">
-                                        <div class="col-sm-5">
-                                            <h2 class="blog-title"><a href="">Blog Post Title Goes Here</a></h2>
-                                            <ul class="list-unstyled post-meta">
-                                                <li>John Smith</li>
-                                                <li><a href="">Category</a></li>
-                                                <li>23 Jul 2017</li>
-                                            </ul>
-                                            <a href="" class="post-details-btn">Read More</a>
-                                        </div>
-                                        <div class="col-sm-7">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et amet facilis hic provident asperiores nam in fugiat. Odit non unde quibusdam suscipit officiis, voluptate laborum reprehenderit dignissimos cup iditate, inventore impedit sed! Impedit neque.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- Ends: .blog-single-post -->*@
-                            <div class="blog-pagination" hidden>
-                                <ul class="list-unstyled">
-                                    <li><a href=""><i class="fa fa-angle-left"></i></a></li>
-                                    <li class="active"><a href="">1</a></li>
-                                    <li><a href="">2</a></li>
-                                    <li><a href="">3</a></li>
-                                    <li><a href=""><i class="fa fa-angle-right"></i></a></li>
-                                </ul>
+                                </div><!-- Ends: .blog-inner -->
                             </div>
-                        </div><!-- Ends: .blog-inner -->
-                    </div>
-                </div>
+                        </div>
             </div>
         </div>
-
-
-          
-
-
 
         <!-- Footer -->
         <footer>

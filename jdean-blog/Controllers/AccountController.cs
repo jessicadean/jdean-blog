@@ -71,7 +71,7 @@ namespace jdean_blog.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return RedirectToAction("Index","Posts",null);
             }
 
             // This doesn't count login failures towards account lockout
@@ -80,7 +80,8 @@ namespace jdean_blog.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    /*return RedirectToLocal(returnUrl);*/
+                    return RedirectToAction("Index", "Posts", null);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -280,6 +281,7 @@ namespace jdean_blog.Controllers
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
+            returnUrl = "/Posts";
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
@@ -368,7 +370,7 @@ namespace jdean_blog.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

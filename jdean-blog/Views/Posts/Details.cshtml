@@ -1,4 +1,5 @@
 ﻿@model jdean_blog.Models.Post
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = Model.Title;
@@ -8,9 +9,10 @@
 
 <div>
     <h4>Posted @Html.DisplayFor(model => model.Created)</h4>
-   
+
     @if (Model.MediaUrl != null)
-    {   <img class="img-responsive" src="@Url.Content(Model.MediaUrl)" alt="">
+    {   
+        <img class="img-responsive" src="@Url.Content(Model.MediaUrl)" alt="">
     }
     <hr />
     <dl class="dl-horizontal">
@@ -35,73 +37,94 @@
         <dt></dt>
 
         <dd></dd>
-        @if (User.IsInRole("Admin")) { 
-        <dt>
-            @Html.DisplayNameFor(model => model.Published)
-        </dt>
+        @if (User.IsInRole("Admin"))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Published)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Published)
-        </dd>
-    
+            <dd>
+                @Html.DisplayFor(model => model.Published)
+            </dd>
+
         }
 
     </dl>
 </div>
 
 <p>
-    @if (User.IsInRole ("Admin"))
+    @if (User.IsInRole("Admin"))
     {
-    @Html.ActionLink("Edit |", "Edit", new { id = Model.Id }) 
+        @Html.ActionLink("Delete | ", "Delete", new {id = Model.Id})
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
     }
-    
+
     @Html.ActionLink("Back to List", "Index")
 </p>
 
 <div class="blog-comment">
     <div class="comment-heading">
-        <h2>Comments (3)</h2> @*Model.Count: see shopping cart?*@
+        <h2>Comments (@Model.Comments.Count())</h2> 
     </div>
     <div class="comments-wrapper">
         <div class="comment-single">
-        @foreach (var comment in Model.Comments)
-        {
-            <div class="author-image">
+            @*<div class="author-image">
                 <img src="images/profile01.jpg" alt="" class="img-responsive">
-            </div>
+            </div>*@
             <div class="author-comment">
-                <h2>John Smith <span>2 hour ago</span></h2>
-                <p>@Html.Raw(comment.Body)</p>
-                <a href="">Reply</a>
+
+                @foreach (var comment in Model.Comments.OrderByDescending(c => c.Id))
+                {
+                    <h2>@comment.Author.FirstName<span>@comment.CreationDate</span></h2>
+                    <p>@comment.Body</p>
+                       
+
+                    if (User.IsInRole("Admin") || User.IsInRole("Moderator") || User.Identity.GetUserId() == comment.Author.Id)
+                    {
+                        @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.Id }, null)
+                        @Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.Id }, null)
+                    }
+                }
             </div>
-        }
         </div><!-- Ends: .comment-single -->
-        
+
     </div><!-- Ends: .cmments-wrapper -->
 </div><!-- Ends: .blog-comment -->
-
+@if (Request.IsAuthenticated)
+{
 <div class="blog-comment-form">
-    
+
     <div class="comment-form-heading">
         <h2>Leave A Comment</h2>
     </div>
-    
-    @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { enctype = "Multipart/form-data" }))
+
+    @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "form-horizontal" }))
     {
+        @Html.AntiForgeryToken()
+        <input type="number" name="BlogPostId" value="@Model.Id" hidden />
         <div class="form-group row">
             <div class="col-sm-6">
-                <input type="text" placeholder="Your Name" required>
+                Commenting as: @User.Identity.GetUserName()
+
             </div>
-            <div class="col-sm-6">
+            @*<div class="col-sm-6">
                 <input type="email" placeholder="Email" required>
-            </div>
+            </div>*@
             <div class="col-sm-12">
-                <textarea placeholder="Message"></textarea>
+                <textarea id="editor" name="Body" placeholder="Message"></textarea>
+
             </div>
             <div class="col-sm-12">
                 <button type="submit">Send Comment</button>
             </div>
         </div>
-    }   
+    }
+</div>
+}
+else
+{
+    <p>Please @Html.ActionLink("login ", "Login", "Account")or 
+    @Html.ActionLink("register","Register","Account") to comment.</p>
+}
 <!-- Ends: .blog-comment-form -->
 <hr />

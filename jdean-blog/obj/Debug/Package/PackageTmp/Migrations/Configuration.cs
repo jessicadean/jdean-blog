@@ -55,7 +55,7 @@ namespace jdean_blog.Migrations
             var userId = userManager.FindByEmail("jessc.dean@gmail.com").Id;
             userManager.AddToRole(userId, "Admin");
             var moderatorId = userManager.FindByEmail("rchapman@coderfoundry.com").Id;
-            userManager.AddToRole(userId, "Moderator");
+            userManager.AddToRole(moderatorId, "Moderator");
         }
         //  This method will be called after migrating to the latest version.
 

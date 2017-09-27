@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using jdean_blog.Models; //Using Directives specify namespace, using statements (found in code) handles unmanaged resources
 using jdean_blog.Helpers;
 using System.IO;
+using PagedList;
+using PagedList.Mvc;
 
 namespace jdean_blog.Controllers //must ref this if using elsewhere
 {
@@ -18,10 +20,34 @@ namespace jdean_blog.Controllers //must ref this if using elsewhere
         private ApplicationDbContext db = new ApplicationDbContext(); //Instantiation of ApplicationDbContext. Why? Makes the db.operations possible. Permits CRUD operations
 
         // GET: Posts
-        public ActionResult Index() //returns the collection to the specified view
+        public ActionResult Index(int? page) //returns the collection to the specified view
         {
-            return View(db.Posts.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+            if(Request.IsAuthenticated && User.IsInRole("Admin"))
+            { 
+            return View(db.Posts.OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
+            }
+            return View(db.Posts.Where(p => p.Published == true).OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
         }
+        [HttpPost]
+        public ActionResult Index(string searchStr, int? page) //returns the collection to the specified view
+        {
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+            ViewBag.Search = searchStr;
+            SearchHelper search = new SearchHelper();
+            var blogList = search.IndexSearch(searchStr);
+           
+            if(Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                return View(blogList.Where(p => p.Published == true).OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
+            }
+            return View(blogList.Where(p => p.Published == true).OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
+        }
+   
 
         // GET: Posts/Details/5
         public ActionResult Details(string Slug)
@@ -30,7 +56,7 @@ namespace jdean_blog.Controllers //must ref this if using elsewhere
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post blogPost = db.Posts.FirstOrDefault(p => p.Slug == Slug);
+            Post blogPost = db.Posts.Include(p => p.Comments).FirstOrDefault(p => p.Slug == Slug);
             if (blogPost == null)
             {
                 return HttpNotFound();
@@ -119,12 +145,13 @@ namespace jdean_blog.Controllers //must ref this if using elsewhere
         // POST: Posts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        
         [Authorize(Roles = "Admin")]
-
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Body,Created,Updated,MediaUrl,Published,Slug")]  Post blogPost, HttpPostedFileBase image) //Bind Attribute tells it to add these properties when it sends to view
+        public ActionResult Edit([Bind(Include = "Id,Title,Body,Created,Updated,MediaUrl,Published,Slug")]  Post blogPost, string MediaUrl, HttpPostedFileBase image) //Bind Attribute tells it to add these properties when it sends to view
         {
+            blogPost.Updated = DateTime.Now;
             if (image != null && image.ContentLength > 0)
             {
                 var ext = Path.GetExtension(image.FileName).ToLower();
@@ -134,30 +161,32 @@ namespace jdean_blog.Controllers //must ref this if using elsewhere
 
             if (ModelState.IsValid)
             {
+                
+                if (image != null)
+                {
+                var filePath = "/assets/Images/";
+                var absPath = Server.MapPath("~" + filePath);
+                blogPost.MediaUrl = filePath + image.FileName;
+                image.SaveAs(Path.Combine(absPath, image.FileName));
+                }
+                else
+                {
+                    blogPost.MediaUrl = MediaUrl;
+                }
+                var title = db.Posts.AsNoTracking().FirstOrDefault(p => p.Id == blogPost.Id).Title;
+                if (blogPost.Title != title)
+                { 
+
                 var Slug = StringUtilities.URLFriendly(blogPost.Title);
                 if (String.IsNullOrWhiteSpace(Slug))
                 {
                     ModelState.AddModelError("Title", "Invalid title");
                     return View(blogPost);
                 }
+                
 
-                // Test whether newly generated slug is different (Has title/slug changed?).
-                if (Slug != blogPost.Slug)
-                {
-                    // If title/slug has changed, determine whether new title/slug is unique.
-                    if (db.Posts.Any(p => p.Slug == Slug))
-                    {
-                        ModelState.AddModelError("Title", "The title must be unique");
-                        return View(blogPost);
-                    }
-                }
-                var filePath = "/assets/Images/";
-                var absPath = Server.MapPath("~" + filePath);
-                blogPost.MediaUrl = filePath + image.FileName;
-                image.SaveAs(Path.Combine(absPath, image.FileName));
                 blogPost.Slug = Slug;
-                blogPost.Updated = DateTime.Now;
-
+                }
                 db.Entry(blogPost).State = EntityState.Modified; //upon submit button execute, will save changes
                 db.SaveChanges();
                 return RedirectToAction("Index");

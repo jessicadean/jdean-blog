@@ -1,4 +1,5 @@
 ﻿@model jdean_blog.Models.Post
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = Model.Title;
@@ -8,30 +9,21 @@
 
 <div>
     <h4>Posted @Html.DisplayFor(model => model.Created)</h4>
-   
-   
+
     @if (Model.MediaUrl != null)
     {   <img class="img-responsive" src="@Url.Content(Model.MediaUrl)" alt="">
     }
     <hr />
     <dl class="dl-horizontal">
-        
-
-        <dt>
-            
-        </dt>
+        <dt></dt>
 
         <dd>
             @Html.Raw(Model.Body)
         </dd>
 
-        <dt>
-            
-        </dt>
+        <dt></dt>
 
-        <dd>
-            
-        </dd>
+        <dd> </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Updated)
@@ -41,31 +33,91 @@
             @Html.DisplayFor(model => model.Updated)
         </dd>
 
-        <dt>
-          
-        </dt>
+        <dt></dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MediaUrl)
-        </dd>
-        @if (User.IsInRole("Admin")) { 
-        <dt>
-            @Html.DisplayNameFor(model => model.Published)
-        </dt>
+        <dd></dd>
+        @if (User.IsInRole("Admin"))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Published)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Published)
-        </dd>
-    
+            <dd>
+                @Html.DisplayFor(model => model.Published)
+            </dd>
+
         }
 
     </dl>
 </div>
+
 <p>
-    @if (User.IsInRole ("Admin"))
+    @if (User.IsInRole("Admin"))
     {
-    @Html.ActionLink("Edit |", "Edit", new { id = Model.Id }) 
+        @Html.ActionLink("Edit |", "Edit", new { id = Model.Id })
     }
-    
+
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<div class="blog-comment">
+    <div class="comment-heading">
+        <h2>Comments (@Model.Comments.Count())</h2> @*Model.Count: see shopping cart?*@
+    </div>
+    <div class="comments-wrapper">
+        <div class="comment-single">
+            <div class="author-image">
+                <img src="images/profile01.jpg" alt="" class="img-responsive">
+            </div>
+            <div class="author-comment">
+
+                @foreach (var comment in Model.Comments.OrderByDescending(c => c.Id))
+                {
+                    <h2>@comment.Author.UserName<span>@comment.CreationDate</span></h2>
+                    <p>@comment.Body</p>
+                    <a href="">Reply</a>
+
+                    if (User.IsInRole("Admin") || User.IsInRole("Moderator") || User.Identity.GetUserId() == comment.Author.Id)
+                    {
+                        @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.Id })
+                        @Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.Id })
+                    }
+                }
+            </div>
+        </div><!-- Ends: .comment-single -->
+
+    </div><!-- Ends: .cmments-wrapper -->
+</div><!-- Ends: .blog-comment -->
+
+<div class="blog-comment-form">
+
+    <div class="comment-form-heading">
+        <h2>Leave A Comment</h2>
+    </div>
+
+
+    @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="number" name="BlogPostId" value="@Model.Id" hidden />
+        <div class="form-group row">
+            <div class="col-sm-6">
+                Commenting as: @User.Identity.GetUserName()
+
+            </div>
+            <div class="col-sm-6" hidden>
+                <input type="email" placeholder="Email" required>
+            </div>
+            <div class="col-sm-12">
+                <textarea id="editor" name="Body" placeholder="Message"></textarea>
+
+            </div>
+            <div class="col-sm-12">
+                <button type="submit">Send Comment</button>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Ends: .blog-comment-form -->
+<hr />

@@ -1,83 +1,125 @@
-﻿@model IEnumerable<jdean_blog.Models.Post>  
-        @*IEnumerable= interface (method declaration only, no implementation); allows for foreach loops*@
+﻿@model IPagedList<jdean_blog.Models.Post>  
+    
+@using PagedList;
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Index";
 }
 
+@using (Html.BeginForm("Index", "Posts", FormMethod.Post))
+{
+    <div>
+        <input name="searchStr" type="text" placeholder="Search" value="@ViewBag.Search"/>
+        <button name="btn btn-primary" type="submit">Search</button>
+    </div>
+}
+
 <h2>Recent Posts</h2>
 
-<p> @if (User.IsInRole("Admin"))
-{
-    <a href="@Url.Action("Create", "Posts")" class="btn btn-default">CREATE NEW POST</a>
-}
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            
-        </th>
-        <th>
-            Posted
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Updated)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.MediaUrl)
-        </th>*@
-      
-        <th></th>
-    </tr>
+ 
+    @if (User.IsInRole("Admin"))
+    {
+        <p>
+        <a href="@Url.Action("Create", "Posts")" class="btn btn-default">CREATE NEW POST</a>
+    </p>
+    }
 
-@foreach (var item in Model)
+<div class="blog-single-post">
+    @if (User.IsInRole ("Admin"))
+    {
+    foreach (var item in Model)
 {
-    <tr>
-        @*<td>
-    <a href="@Url.Action("Details", "Posts", new { id = item.Id })">
+        <div class="post-image">
+
+            @if (item.MediaUrl != null)
+            {
+                <img class="img-responsive" src="@Url.Content(item.MediaUrl)" alt="">
+            }
+        </div>
+        <div class="post-excerpt">
+            <div class="row">
+                <div class="col-sm-5">
+                    <h2 class="blog-title">@Html.DisplayFor(modelItem => item.Title)</h2>
+                    <ul class="list-unstyled post-meta">
+                        <li>Jessica Dean</li>
+                        <li><a href="">Category</a></li>
+                        <li>@Html.DisplayFor(modelItem => item.Created)</li>
+                    </ul>
+                   
+                </div>
+                <div class="col-sm-7">
+                    
+                        @if (item.Body != null && item.Body.Length > 500)
+                        {
+                        <p> @Html.Raw(item.Body.Substring(0, 250))</p>
+                        }
+                        else
+                        {
+                            <p> @Html.Raw(item.Body)</p>
+                        }
+                        @Html.ActionLink("Read More", "Details", new { Slug = item.Slug })
+
+                    
+                </div>
+            </div>
+        </div> 
+    }
+        }
+
+    @if (!User.IsInRole("Admin"))
+    {
+    foreach (var item in Model.Where(p => p.Published))
+    {
+    <div class="post-image">
+
         @if (item.MediaUrl != null)
-        {
+            {
             <img class="img-responsive" src="@Url.Content(item.MediaUrl)" alt="">
         }
-    </a>
-</td>*@ 
-    <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.Body)*@
-            @*@Html.Raw(item.Body)*@
-            
-                @{
-                    var myBlurb = String.Concat(item.Body.Take(125));
-                }
-                @Html.Raw(myBlurb)...
-            @Html.ActionLink("Read More", "Details", new { slug = item.Slug })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Updated)
-        </td>
-       @Html.ActionLink(item.Title, "Details", new { slug = item.Slug }) |
-        @*<td>
-            @Html.DisplayFor(modelItem => item.MediaUrl)
-        </td>*@
-        
-       @if (User.IsInRole("Admin"))
-        {
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
-            
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-        }
-    </tr>
-}
+    </div>
+    <div class="post-excerpt">
+        <div class="row">
+            <div class="col-sm-5">
+                <h2 class="blog-title">@Html.DisplayFor(modelItem => item.Title)</h2>
+                <ul class="list-unstyled post-meta">
+                    <li>Jessica Dean</li>
+                    <li><a href="">Category</a></li>
+                    <li>@Html.DisplayFor(modelItem => item.Created)</li>
+                </ul>
 
-</table>
+            </div>
+            <div class="col-sm-7">
+
+                @if (item.Body != null && item.Body.Length > 500)
+                {
+                    <p> @Html.Raw(item.Body.Substring(0, 250))</p>
+                }
+                else
+                {
+                    <p> @Html.Raw(item.Body)</p>
+                }
+                @Html.ActionLink("Read More", "Details", new { Slug = item.Slug })
+
+
+            </div>
+        </div>
+    </div>
+    }
+    }
+    </div>
+    <!-- Ends: .blog-single-post -->
+
+@*<div class="blog-pagination">
+    <ul class="list-unstyled">
+        <li><a href=""><i class="fa fa-angle-left"></i></a></li>
+        <li class="active"><a href="">1</a></li>
+        <li><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li><a href=""><i class="fa fa-angle-right"></i></a></li>
+    </ul>
+</div>*@
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action ("Index", new { page, searchStr = ViewBag.Search}))

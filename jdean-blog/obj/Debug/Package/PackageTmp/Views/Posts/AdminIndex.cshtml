@@ -1,0 +1,86 @@
+﻿@model IPagedList<jdean_blog.Models.Post>
+
+    @using PagedList;
+    @using PagedList.Mvc;
+
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    @{
+        ViewBag.Title = "AdminIndex";
+    }
+
+    <h2>AdminIndex</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Title)
+            </th>
+            <th>
+                Body
+            </th>
+            <th>
+                Posted
+            </th>
+            <th>
+                Posted On
+            </th>
+            <th>
+                Updated On
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.First().MediaUrl)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @*<a href="@Url.Action("Details", "Posts", new { id = item.Id })"></a>*@
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @if (item.Body != null && item.Body.Length > 200)
+                {
+                        <p> @Html.Raw(item.Body.Substring(0, 150))</p>
+                    }
+                    else
+                    {
+                        <p> @Html.Raw(item.Body)</p>
+                    }
+                    @Html.ActionLink("Read More", "Details", new { slug = item.Slug })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Updated)
+                </td>
+                @Html.ActionLink(item.Title, "Details", new { slug = item.Slug }) |
+                <td>
+                    @if (item.MediaUrl != null)
+                {
+                        <img class="img-responsive" src="@Url.Content(item.MediaUrl)" alt="">
+                    }
+                </td>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchStr = ViewBag.Search }))

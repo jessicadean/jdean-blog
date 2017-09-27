@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")*@
     <!-- Favicon -->
     <link rel="shortcut icon" href="~/Assets/images/favicon4.ico" type="image/x-icon">
     <link rel="icon" href="~/Assets/images/favicon4.ico" type="image/x-icon">
@@ -43,7 +43,7 @@
 <body>
     <!-- Sidenav -->
     <section class="sidenav">
-        <img src="~/Assets/images/sidenav-img03.jpg" alt="" class="img-responsive sidenav-img">
+        <img src="~/Assets/images/headshot300.png" alt="" class="img-responsive sidenav-img">
         <p class="sidenav-desc">Thanks for stopping by.</p>
         <h6 class="mt-40">Get in Touch</h6>
         <address class="info-address">Downtown<br>Greensboro, NC  </address>
@@ -53,9 +53,9 @@
         <div class="social-icons nobase dark mt-40">
             <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-instagram"></i></a>
-            
+
             <a href="#"><i class="fa fa-linkedin"></i></a>
-            
+
         </div>
         <a href="#" id="sidenav-close">
             <i class="fa fa-times"></i>
@@ -99,13 +99,13 @@
                                         <li><a href="http://jdean-portfolio.azurewebsites.net/#about" target="_blank">About</a></li>
                                         <li><a href="http://jdean-portfolio.azurewebsites.net/assets/documents/jessicadean1.pdf" target="_blank">Resume</a></li>
                                         <li><a href="http://jdean-portfolio.azurewebsites.net/#works" target="_blank">Portfolio</a></li>
-                                        <li>@Html.ActionLink("Blog","Index","Posts")</li>
-                                        <li>@Html.ActionLink("Contact","Contact","Home")</li>
+                                        <li>@Html.ActionLink("Blog", "Index", "Posts")</li>
+                                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                                         <li class="nav-right hidden-xs">
                                             <ul class="list-unstyled">
                                                 <li class="nav-search-wrap hidden-xs">
-                                                    <a href="#" class="nav-search search-trigger">
-                                                        <i class="fa fa-search"></i>
+                                                    <a href="#" class="nav-search search-trigger" hidden>
+                                                        <i class="fa fa-search" hidden></i>
                                                     </a>
                                                 </li>
                                                 <li class="nav-icon-wrap hidden-sm hidden-xs">
@@ -132,95 +132,107 @@
                                         </li>
                                     </ul>
                                 </div><!-- .navbar-collapse -->
-                            </div><!-- .container -->
-                        </div>
-                    </div>
-                </nav>
-            </div><!-- Ends: .main-menu -->
-        </header><!-- Ends: header -->
-        <!-- Page Header -->
-        <section class="page-heading">
-            <div class="page-heading-inner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-4 page-name">
-                            <h2><span>Blog</span> Page</h2>
-                            <ul class="list-unstyled breadcrumb">
-                                <li><a href="">Home</a></li>
-                                <li class="active">Blog</li>
-                            </ul>                   </div>
-                       
-                        <div class="col-sm-8 page-desc">
-                            <h2>Find My All <span>Blog Posts</span> Here</h2>
-                            <div>
-                                <section id="login">
-                                    @Html.Partial("_LoginPartial")
-                                </section>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- Ends: .page-heading -->
-        <!-- Blog Container -->
-        <div class="blog-single-wrapper">
+                            </div> <!-- .container -->
+    </nav>
+    </div>
+    </header><!-- Ends: header -->
+    </div> <!-- Ends: .main-menu -->
+    <!-- Page Header -->
+    <section class="page-heading">
+        <div class="page-heading-inner">
             <div class="container">
                 <div class="row">
-                    
-                    <!-- Blog Content -->
-                            
-                            <!-- Blog Content -->
-                            <div class="col-sm-10 col-sm-offset-1">
-                                <div class="blog-single-inner">
-                                    @*<div class="blog-single-post">
-                                        <div class="post-image">
-                                            <img src="~/Assets/images/blog-post01.jpg" alt="" class="img-responsive">
-                                        </div>
-                                        <div class="post-excerpt">
-                                            <div class="row">
-                                                <div class="col-sm-5">
-                                                    <h2 class="blog-title"><a href="">Blog Post Title Goes Here</a></h2>
-                                                    <ul class="list-unstyled post-meta">
-                                                        <li>John Smith</li>
-                                                        <li><a href="">Category</a></li>
-                                                        <li>23 Jul 2017</li>
-                                                    </ul>
-                                                    <a href="" class="post-details-btn">Read More</a>
-                                                </div>
-                                                <div class="col-sm-7">
-                                                    <p> </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>*@<!-- Ends: .blog-single-post -->
-@RenderBody()
-                                    @*!-- Ends: .blog-single-post -->*@
-                                    <div class="blog-pagination" hidden>
-                                        <ul class="list-unstyled">
-                                            <li><a href=""><i class="fa fa-angle-left"></i></a></li>
-                                            <li class="active"><a href="">1</a></li>
-                                            <li><a href="">2</a></li>
-                                            <li><a href="">3</a></li>
-                                            <li><a href=""><i class="fa fa-angle-right"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div><!-- Ends: .blog-inner -->
-                            </div>
+                    <div class="col-sm-4 page-name">
+                        <h2><span>Blog</span> Page</h2>
+                        <ul class="list-unstyled breadcrumb">
+                            <li><a href="">Home</a></li>
+                            <li class="active">@Html.ActionLink("Blog","Index","Posts")</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-8 page-desc">
+                        <h2>Find My <span>Blog Posts</span> Here</h2>
+                        <div>
+                            <section id="login">
+                                @Html.Partial("_LoginPartial")
+                            </section>
                         </div>
+                        @*<div class="search-cell">
+    @using (Html.BeginForm("Index", "Posts", FormMethod.Post))
+    {
+        <div class="search-field-holder">
+            <input name="searchStr" class="form-control main-search-input" type="text" placeholder="Search" value="@ViewBag.Search" />
+            <button name="btn btn-primary" type="submit">Search</button>
+            <i class="fa fa-times" id="search-close"></i>
+                                </div>
+                            }
+
+                            @*<form method="get">
+                                <div class="search-field-holder">
+                                    <input type="search" class="form-control main-search-input" placeholder="Type & Hit Enter...">
+                            <i class="fa fa-times" id="search-close"></i>
+    </div>*@
+
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 footer-content wow fadeIn">
-                        <p>&copy; 2017 All rights reserved | <i class="fa fa-heart"></i>Jessica Dean</p>
-                    </div>
+    </section><!-- Ends: .page-heading -->
+    <!-- Blog Container -->
+    <div class="blog-single-wrapper">
+        <div class="container">
+            <div class="row">
+                <!-- Blog Content -->
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="blog-single-inner">
+                        @*<div class="blog-single-post">
+                                <div class="post-image">
+                                    <img src="~/Assets/images/blog-post01.jpg" alt="" class="img-responsive">
+                                </div>
+                                <div class="post-excerpt">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <h2 class="blog-title"><a href="">Blog Post Title Goes Here</a></h2>
+                                            <ul class="list-unstyled post-meta">
+                                                <li>John Smith</li>
+                                                <li><a href="">Category</a></li>
+                                                <li>23 Jul 2017</li>
+                                            </ul>
+                                            <a href="" class="post-details-btn">Read More</a>
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <p> </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@<!-- Ends: .blog-single-post -->
+                        @RenderBody()
+                        @*!-- Ends: .blog-single-post -->*@
+                        <div class="blog-pagination" hidden>
+                            <ul class="list-unstyled">
+                                <li><a href=""><i class="fa fa-angle-left"></i></a></li>
+                                <li class="active"><a href="">1</a></li>
+                                <li><a href="">2</a></li>
+                                <li><a href="">3</a></li>
+                                <li><a href=""><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div><!-- Ends: .blog-inner -->
                 </div>
             </div>
-        </footer><!-- Ends: footer -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 footer-content wow fadeIn">
+                    <p>&copy; 2017 All rights reserved | <i class="fa fa-female"></i>Jessica Dean</p>
+                </div>
+            </div>
+        </div>
+    </footer><!-- Ends: footer -->
     </div><!-- Ends .main-wrapper -->
     <!-- =========================================
     JavaScript Files
@@ -240,7 +252,7 @@
 
 
     @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
+        @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

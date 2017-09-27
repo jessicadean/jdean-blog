@@ -43,7 +43,7 @@ namespace jdean_blog.Controllers //must ref this if using elsewhere
            
             if(Request.IsAuthenticated && User.IsInRole("Admin"))
             {
-                return View(blogList);
+                return View(blogList.Where(p => p.Published == true).OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
             }
             return View(blogList.Where(p => p.Published == true).OrderByDescending(p => p.Created).ToPagedList(pageNumber, pageSize));
         }

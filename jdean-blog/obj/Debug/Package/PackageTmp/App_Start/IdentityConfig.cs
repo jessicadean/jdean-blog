@@ -19,10 +19,41 @@ namespace jdean_blog
     
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var GmailUsername = WebConfigurationManager.AppSettings["username"]; //points to appsettings tag in Web.config
+            var GmailPassword = WebConfigurationManager.AppSettings["password"];
+            var host = WebConfigurationManager.AppSettings["host"];
+            int port = Convert.ToInt32(WebConfigurationManager.AppSettings["port"]);
+
+            using (var smtp = new SmtpClient()
+            {
+                Host = host,
+                Port = port,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(GmailUsername, GmailPassword)
+            })
+
+            using (var email = new MailMessage("MyBlog<jessicadeanblog@gmail.com>", message.Destination)
+            {
+                Subject = message.Subject, //building mailMessage object
+                IsBodyHtml = true,
+                Body = message.Body
+            })
+            {
+                try
+                {
+                    await smtp.SendMailAsync(email); //this line of code sends the email. await makes sure it runs at the end
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    await Task.FromResult(0);
+                }
+            };
         }
     }
 
@@ -62,6 +93,7 @@ namespace jdean_blog
     {
         public Task SendAsync(IdentityMessage message)
         {
+
             // Plug in your SMS service here to send a text message.
             return Task.FromResult(0);
         }

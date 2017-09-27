@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using jdean_blog.Models;
+using Owin.Security.Providers.LinkedIn;
 
 namespace jdean_blog
 {
@@ -54,15 +55,17 @@ namespace jdean_blog
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1897127937274669",
+               appSecret: "af2d97410752df9d1edd61f4af9e5ed3");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "914615643952-tli6mo2uvtmqmusa785isqke9pvi4gau.apps.googleusercontent.com",
+                ClientSecret = "E_wKDK7kJmZEVvzPA6HtK9fd"
+            });
+
+            app.UseLinkedInAuthentication("78q98o70r5ertx", "WzSMmaCnjBPhOAKT");
         }
     }
 }
