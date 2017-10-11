@@ -111,7 +111,7 @@ namespace jdean_blog.Controllers //must ref this if using elsewhere
                     ModelState.AddModelError("Title", "The title must be unique");
                     return View(blogPost);
                 }
-                var filePath = "/assets/Images/";
+                var filePath = "/Assets/images/";
                 var absPath = Server.MapPath("~" + filePath);
                 blogPost.MediaUrl = filePath + image.FileName;
                 image.SaveAs(Path.Combine(absPath, image.FileName));
@@ -164,7 +164,7 @@ namespace jdean_blog.Controllers //must ref this if using elsewhere
                 
                 if (image != null)
                 {
-                var filePath = "/assets/Images/";
+                var filePath = "/Assets/images/";
                 var absPath = Server.MapPath("~" + filePath);
                 blogPost.MediaUrl = filePath + image.FileName;
                 image.SaveAs(Path.Combine(absPath, image.FileName));

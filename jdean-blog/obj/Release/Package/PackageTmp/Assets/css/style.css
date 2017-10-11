@@ -1618,7 +1618,7 @@ footer p i, footer p a {
    ======================= */
 .image-bg {
     /*background: url() /*url(../images/wichita.jpg)*/
-    background-image: url('../images/wichita.jpg');
+    background-image: url('../images/WichitaBlog.tiff');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -1632,7 +1632,7 @@ footer p i, footer p a {
     position: absolute;
     top: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 /* =========================
@@ -1760,9 +1760,9 @@ footer p i, footer p a {
     position: relative;
     min-height: 350px;
 }
-
+    /*rgba(0, 0, 0, 0.5)*/
 .page-heading:before {
-    background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0.5) none repeat scroll 0 0;
     content: "";
     height: 100%;
     left: 0;
@@ -2022,7 +2022,7 @@ footer p i, footer p a {
    Blog Single Page
    ======================= */
 .blog-single-wrapper {
-    padding: 130px 0;
+    padding: 30px 0;
 }
 
 .blog-single-wrapper .blog-single-inner .blog-image {
